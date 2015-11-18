@@ -6,4 +6,5 @@ function bfish -d "oh-my-fish theme bobthefish helpful function"
             set -g theme_display_ruby yes
         end
     end
+    return 0
 end
