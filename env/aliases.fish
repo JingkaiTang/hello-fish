@@ -17,3 +17,6 @@ end
 # sudo
 exists_alias sudo "sudo -E"
 
+functions -e exists_alias
+functions -e non_exists_alias
+
