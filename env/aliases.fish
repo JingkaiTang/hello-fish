@@ -17,7 +17,3 @@ end
 # sudo
 exists_alias sudo "sudo -E"
 
-# vi or vim
-non_exists_alias vi vim
-non_exists_alias vim vi
-
