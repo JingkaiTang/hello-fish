@@ -1,23 +1,35 @@
+# bfish_sets
+set bfish_sets "theme_display_ruby" "theme_display_user"
+
+# _bfish_single_function
+function _bfish_single_function
+    if test -z $argv[1]
+        return
+    end
+    
+    set bfish_key $argv[1]
+    
+    eval "
+        if test -z \"$$bfish_key\"
+            set -g $bfish_key yes
+        else if test \"$$bfish_key\" = \"yes\"
+            set -g $bfish_key no
+        else 
+            set -g $bfish_key yes
+        end
+    "
+end
+    
 # bfish function
 function bfish -d "oh-my-fish theme bobthefish helpful function"
     for arg in $argv
-        if test $arg = "ruby"
-            if test -z "$theme_display_ruby"
-                set -g theme_display_ruby yes
-            else if test $theme_display_ruby = "yes"
-                set -g theme_display_ruby no
-            else
-                set -g theme_display_ruby yes
-            end
-        else if test $arg = "user"
-            if test -z "$theme_display_user"
-                set -g theme_display_user yes
-            else if test $theme_display_user = "yes"
-                set -g theme_display_user no
-            else
-                set -g theme_display_user yes
-            end
+        switch $arg
+            case "ruby"
+                _bfish_single_function "theme_display_ruby"
+            case "user"
+                _bfish_single_function "theme_display_user"
         end
     end
     return 0
 end
+
