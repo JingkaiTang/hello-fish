@@ -46,10 +46,19 @@ set other_inits_dirs
 # Join two inits dirs into one variable
 set inits_dirs $HELLO_FISH_HOME/$home_inits_dirs $other_inits_dirs
 
+# Platform
+if [ -n "$HELLO_FISH_PLATFORM" ]
+    set target $HELLO_FISH_HOME/platforms/$HELLO_FISH_PLATFORM
+    if [ -e $target -a -d $target ]
+	set inits_dirs $inits_dirs $target
+    end
+end
+
 # Load Scripts
 for dir in $inits_dirs
     for script in $dir/*.fish
         source $script
     end
 end
+
 
